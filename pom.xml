@@ -5,16 +5,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.study.project</groupId>
-  <artifactId>study_project</artifactId>
+  <artifactId>study_project_dashaveleva</artifactId>
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+
   <modules>
-    <module>secondModule</module>
+    <module>thirdModule</module>
+    <module>second_Module</module>
   </modules>
 
   <name>study_project</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,14 +31,6 @@
       <scope>test</scope>
     </dependency>
 
-
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>6.10</version>
-      <scope>test</scope>
-    </dependency>
-
   </dependencies>
 
 
@@ -48,7 +41,10 @@
 
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+          <version>3.0.0-M6</version>
+          <configuration>
+            <forkCount>0</forkCount>
+          </configuration>
         </plugin>
 
       </plugins>

@@ -6,8 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 public class StudyTest {
     @Test
-    public void shouldAnswerWithTrue()
-    {
+    public void shouldAnswerWithTrue() {
         assertTrue( true );
     }
 }
