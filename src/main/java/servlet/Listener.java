@@ -5,7 +5,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 @WebListener
-public class Listener implements ServletContextListener, HttpSessionListener {
+public class Listener implements ServletContextListener {
 
     public Listener() {
     }
@@ -20,14 +20,6 @@ public class Listener implements ServletContextListener, HttpSessionListener {
         /* This method is called when the servlet Context is undeployed or Application Server shuts down. */
     }
 
-    @Override
-    public void sessionCreated(HttpSessionEvent se) {
-        /* Session is created. */
-    }
 
-    @Override
-    public void sessionDestroyed(HttpSessionEvent se) {
-        /* Session is destroyed. */
-    }
 
 }
