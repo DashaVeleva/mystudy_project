@@ -10,7 +10,7 @@ public class HelloServlet extends HttpServlet {
     private String message;
 
     public void init() {
-        message = "Hello Fucking World!";
+        message = "Hello World!";
     }
 
     @Override
