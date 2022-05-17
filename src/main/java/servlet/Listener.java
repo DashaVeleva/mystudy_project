@@ -12,7 +12,18 @@ public class Listener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        /* This method is called when the servlet context is initialized(when the Web application is deployed). */
+        ServletContext ctx = sce.getServletContext();
+/*
+        String url = ctx.getInitParameter("DBURL");
+        String u = ctx.getInitParameter("DBUSER");
+        String p = ctx.getInitParameter("DBPWD");
+
+        //create database connection from init parameters and set it to context
+        DBConnectionManager dbManager = new DBConnectionManager(url, u, p);
+        ctx.setAttribute("DBManager", dbManager);
+        System.out.println("Database connection initialized for Application.");*/
+
+        System.out.println("Listener works");
     }
 
     @Override

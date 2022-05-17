@@ -14,6 +14,7 @@ public class MessageFilter extends GenericFilter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
+        System.out.println("MessageFilter works");
         chain.doFilter(request, response);
     }
 }
