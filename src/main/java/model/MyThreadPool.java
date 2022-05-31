@@ -3,49 +3,47 @@ package model;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Queue;
 import java.util.concurrent.*;
 
 public class MyThreadPool implements Executor {
-    BlockingQueue<Runnable> queue;
-    int queueSize;
+    private final BlockingQueue<Runnable> queue;
+    private volatile boolean isRunning = true;
 
     public MyThreadPool(int queueSize) {
-        this.queueSize = queueSize;
-        this.createQueue();
+
+        queue = new LinkedBlockingQueue<>(queueSize);
+
+        for (int i = 0; i < queueSize; i++){
+            new Thread(new Worker()).start();
+        }
 
     }
 
-    synchronized public void createQueue(){
-        queue = new ArrayBlockingQueue<>(queueSize);
-        for (int i = 1; i <= queueSize; i++) {
-            Thread thread = new Thread();
-            thread.setName("thread-" + i);
-            try {
-                queue.put(thread);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-        }
-    }
-
-    synchronized public void execute(Runnable r) {
-        if (queue.size() == 0) {
-            this.createQueue();
-        }
-        Thread thread = (Thread) queue.poll();
-        String name = thread.getName();
-        thread = new Thread(r);
-        thread.setName(name);
-        thread.start();
+    public void execute(Runnable task) {
+      if (isRunning){
+          queue.offer(task);
+      }
 
     }
 
     synchronized public void shutdown() {
-        for (int i = 0; i < queue.size(); i++) {
-            Thread thread = (Thread) queue.poll();
-            thread.interrupt();
-        }
+      isRunning = false;
     }
 
+
+    class Worker implements Runnable {
+
+        @Override
+        public void run() {
+            while (isRunning){
+                Runnable task = queue.poll();
+                if(task != null){
+                    task.run();
+                }
+            }
+
+        }
+    }
 }
+
